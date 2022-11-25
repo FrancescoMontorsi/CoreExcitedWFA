@@ -1,0 +1,61 @@
+>>>EXPORT MOLCAS_MEM=16000
+
+ &gateway
+	coord=$HomeDir/GEOM_0.XYZ
+	group=Nosymm
+	RICD
+ 
+ &seward
+	DOANAL 
+
+ &rasscf
+	FILEORB
+	molcas.RasOrb	
+  	inactive=38
+  	nactel=19 1 4
+	spin = 2 
+  	ras1=1
+  	ras2=9
+  	ras3=7
+  	CIRoot
+  	12 12 1 
+  	thrs=1.0D-06 1.0D-02 1.0D-02
+	NOQUNE
+	HEXS
+	1
+	1
+ 	Supsym
+  	1
+  	1 39
+
+ >> COPY $WorkDir/$Project.JobIph $HomeDir/cation.JobIph
+
+
+
+&grid_it
+name=valence
+noluscus
+ascii
+sparse
+select=1:33-60
+
+
+
+ >> COPY $WorkDir/$Project.JobIph JOBIPH
+
+
+
+ &caspt2
+
+	multistate = 12 1 2 3 4 5 6 7 8 9 10 11 12
+	NOMULT  
+	IMAG = 0.5 
+	IPEA = 0.0
+	NOPROP
+	FROZEN
+	0 0
+	CONV = 1.0d-04 
+	MAXI
+	200
+
+ >> COPY $WorkDir/$Project.JobMix $HomeDir/cation.JobMix

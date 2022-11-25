@@ -1,0 +1,27 @@
+>>>EXPORT MOLCAS_MEM=16000
+
+ &gateway
+        coord=$HomeDir/atoms.xyz
+    group=nosymm
+    RICD
+
+ &seward
+    DOANAL
+
+>>> COPY $HomeDir/valence.JobMix $WorkDir/JOB001
+
+&RASSI
+EJOB
+HEFF
+TRD1
+
+&WFA
+H5file = $Project.rassi.h5
+H5ORbitals
+NXO
+CTNUmmode
+2
+DOCTnumbers
+
+>>> COPY $WorkDir/S0-S1_ctnum_lowdin.om $HomeDir/S0-S1_ctnum_lowdin.om
+>>> COPY $WorkDir/S0-S2_ctnum_lowdin.om $HomeDir/S0-S2_ctnum_lowdin.om

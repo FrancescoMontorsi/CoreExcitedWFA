@@ -1,0 +1,27 @@
+>>>EXPORT MOLCAS_MEM=16000
+
+ &gateway
+	coord=$HomeDir/GEOM_0.XYZ
+	group=Nosymm
+	RICD
+ 
+ &seward
+	DOANAL 
+
+ >> COPY $HomeDir/cation.JobIph JOBIPH
+
+
+
+ &caspt2
+
+	multistate = 12 1 2 3 4 5 6 7 8 9 10 11 12  
+	IMAG = 0.5 
+	IPEA = 0.0
+	NOPROP
+	FROZEN
+	0 0
+	CONV = 1.0d-04 
+	MAXI
+	200
+
+ >> COPY $WorkDir/$Project.JobMix $HomeDir/cation.JobMix
