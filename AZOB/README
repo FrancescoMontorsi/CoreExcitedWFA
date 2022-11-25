@@ -1,0 +1,3 @@
+manifold of valence excited states --> valence
+manifold of core excited states (used to compute  NEXAFS) --> core_excited
+manifold of core ionized states (used to compute XPS) --> core_cations
